@@ -12,12 +12,12 @@ import (
 //Credit : Ian Lance Taylor
 //https://groups.google.com/g/golang-nuts/c/Zsfk-VMd_fU/m/O1ru4fO-BgAJ
 func S2b(s string) (b []byte) {
-    if s == "" {
-        return nil // or []byte{}
-    }
-    return (*[0x7fff0000]byte)(unsafe.Pointer(
-        (*reflect.StringHeader)(unsafe.Pointer(&s)).Data),
-    )[:len(s):len(s)]
+    bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
+    sh := (*reflect.StringHeader)(unsafe.Pointer(&s))
+    bh.Data = sh.Data
+    bh.Cap = sh.Len
+    bh.Len = sh.Len
+    return b
 }
 
 func B2s(b []byte) string {
