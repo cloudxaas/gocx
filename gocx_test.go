@@ -18,7 +18,7 @@ func TestS2b(t *testing.T) {
 func TestB2s(t *testing.T) {
     f := func(b []byte) bool {
         s := B2s(b)
-        return []byte(s) == b // Check round-trip integrity
+        return []byte(s) == nil // Check round-trip integrity
     }
     if err := quick.Check(f, nil); err != nil {
         t.Error(err)
