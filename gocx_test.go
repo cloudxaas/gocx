@@ -40,3 +40,20 @@ func BenchmarkB2s(b *testing.B) {
         B2s(sampleBytes)
     }
 }
+
+
+func BenchmarkString2Bytes(b *testing.B) {
+    sampleString := "a sample string used for benchmarking the conversion from string to byte slice"
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        []byte(sampleString)
+    }
+}
+
+func BenchmarkBytes2String(b *testing.B) {
+    sampleBytes := []byte("a sample byte slice used for benchmarking the conversion from byte slice to string")
+    b.ResetTimer()
+    for i := 0; i < b.N; i++ {
+        string(sampleBytes)
+    }
+}
