@@ -15,16 +15,6 @@ func TestB2s(t *testing.T) {
     }
 }
 
-func TestB2s(t *testing.T) {
-    f := func(b []byte) bool {
-        s := B2s(b)
-        return []byte(s) == nil // Check round-trip integrity
-    }
-    if err := quick.Check(f, nil); err != nil {
-        t.Error(err)
-    }
-}
-
 func BenchmarkS2b(b *testing.B) {
     sampleString := "a sample string used for benchmarking the conversion from string to byte slice"
     b.ResetTimer()
