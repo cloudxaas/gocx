@@ -9,6 +9,7 @@ import (
 	"unsafe"
 )
 
+/* old
 //Credit : Ian Lance Taylor
 //https://groups.google.com/g/golang-nuts/c/Zsfk-VMd_fU/m/O1ru4fO-BgAJ
 func S2b(s string) (b []byte) {
@@ -18,6 +19,11 @@ func S2b(s string) (b []byte) {
     bh.Cap = sh.Len
     bh.Len = sh.Len
     return b
+}
+*/
+
+func S2b(s string) []byte {
+	return unsafe.Slice(unsafe.StringData(s), len(s))
 }
 
 func B2s(b []byte) string {
