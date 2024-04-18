@@ -5,6 +5,16 @@ import (
     "testing/quick"
 )
 
+func TestS2b(t *testing.T) {
+    f := func(s string) bool {
+        b := S2b(s)
+        return string(b) == s // Check round-trip integrity
+    }
+    if err := quick.Check(f, nil); err != nil {
+        t.Error(err)
+    }
+}
+
 func TestB2s(t *testing.T) {
     f := func(b []byte) bool {
         s := B2s(b)
